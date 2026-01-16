@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: ./app-web
+      dockerfile: Dockerfile
+    container_name: app_web
+    ports:
+      - 3001:3000
+    environment:
+      - DB_HOST=base_datos  # Corregido: coincide con el nombre del servicio abajo
+      - DB_USER=user_distribuidas
+      - DB_PASS=password123
+      - DB_NAME=proyecto_salas
+      - PORT=3000
+      - NODE_NAME=Nodo_Unico # Añadido para que tu index.ejs no falle
+    depends_on:
+      - base_datos
+
+  base_datos:
+    image: mysql:8.0
+    container_name: base_datos
+    restart: always
+    environment:
+      - MYSQL_DATABASE=proyecto_salas        # Corregido: uso de '='
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_USER=user_distribuidas
+      - MYSQL_PASSWORD=password123
+    ports:
+      - 3306:3306
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin_gui
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=base_datos # Corregido: coincide con el nombre del servicio
+      - PMA_USER=root
+      - PMA_PASSWORD=root_password
+    depends_on:
+      - base_datos
+
+# --- CRÍTICO: Definición del volumen ---
+volumes:
+  db_data:

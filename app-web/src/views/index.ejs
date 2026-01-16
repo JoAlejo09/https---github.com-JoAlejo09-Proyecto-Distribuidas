@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistema Distribuido</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .server-card {
+            border-left: 5px solid #0d6efd;
+        }
+        .node-name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0d6efd;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+        <div class="container">
+            <a class="navbar-brand" href="/inicio">Proyecto Distribuidas</a>
+            <div class="d-flex">
+                <a href="/salas" class="btn btn-outline-info me-2">Gestionar Salas</a>
+                <a href="/login" class="btn btn-outline-danger">Cerrar Sesión</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h1 class="mb-4">Panel de Control Principal</h1>
+                
+                <div class="card shadow-sm server-card p-4 mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted">Usted está siendo atendido por:</h5>
+                        <div class="node-name mb-2">
+                            <%= nodeName %>
+                        </div>
+                        <p class="card-text">
+                            <span class="badge bg-success">Conexión Activa</span>
+                            <span class="text-secondary ms-2 small">IP del Servidor: <%= (typeof hostIp !== 'undefined') ? hostIp : 'Detectando...' %></span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="alert alert-warning" role="alert">
+                    <strong>Nota para la defensa:</strong> Al recargar esta página, NGINX debería alternar entre el Nodo 1, Nodo 2 y Nodo 3 si el balanceo está configurado como <em>Round Robin</em>.
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-md-6">
+                        <div class="card h-100 p-3">
+                            <h4>Gestión</h4>
+                            <p>Registro y consulta de salas con validación de código único.</p>
+                            <a href="/salas" class="btn btn-primary mt-auto">Ir a Salas</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 p-3">
+                            <h4>Base de Datos</h4>
+                            <p>Sincronización en tiempo real entre Maestro y Esclavo.</p>
+                            <button class="btn btn-secondary mt-auto" disabled>Estado: Sincronizado</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center mt-5 py-3 text-muted">
+        <p>&copy; 2026 - Proyecto de Sistemas Distribuidos</p>
+    </footer>
+
+</body>
+</html>
