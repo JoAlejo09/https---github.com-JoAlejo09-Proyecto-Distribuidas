@@ -24,26 +24,3 @@ export const SalaModel = {
         return result;
     }
 }
-// src/models/sala.model.js (Versión de prueba local)
-
-// Simulamos una base de datos en memoria
-/*let salasMock = [
-    { id: 1, nombre: 'Sala A', codigo: 'S001', capacidad: 20, estado: 'Disponible' }
-];
-
-export const SalaModel = {
-    getAll: async () => {
-        return salasMock; // Devuelve el arreglo local
-    },
-
-    findByCode: async (codigo) => {
-        return salasMock.find(s => s.codigo === codigo);
-    },
-
-    create: async (data) => {
-        const nuevaSala = { id: salasMock.length + 1, ...data };
-        salasMock.push(nuevaSala);
-        return { insertId: nuevaSala.id };
-    }
-};
-*/
