@@ -2,78 +2,81 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Sistema Distribuido</title>
+    <title>Dashboard | Sistema Distribuido</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        .node-card {
-            border-left: 6px solid #0d6efd;
-        }
-        .node-name {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #0d6efd;
-        }
-    </style>
 </head>
+
 <body class="bg-light">
 
-        <nav class="navbar navbar-dark bg-dark shadow-sm">
-        <div class="container">
-            <span class="navbar-brand">Proyecto Sistemas Distribuidos</span>
-            <div>
-                <a href="/salas" class="btn btn-outline-info btn-sm me-2">Salas</a>
-                <a href="/login" class="btn btn-outline-danger btn-sm">Salir</a>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-7 text-center">
-
-                <h2 class="mb-4">Panel de Control</h2>
-
-                <div class="card node-card shadow-sm mb-4">
-                    <div class="card-body">
-                        <p class="text-muted mb-1">Nodo activo</p>
-                        <div class="node-name">
-                            <%= nodeName %>
-                        </div>
-                        <span class="badge bg-success mt-2">Conectado</span>
-                    </div>
-                </div>
-
-                <div class="alert alert-secondary small">
-                    Al recargar la página, el balanceador NGINX redirige la solicitud a distintos nodos.
-                </div>
-
-                <div class="row g-3 mt-3">
-                    <div class="col-md-6">
-                        <div class="card h-100 p-3 text-center">
-                            <h5>Gestión de Salas</h5>
-                            <p class="small text-muted">Registro y consulta de salas.</p>
-                            <a href="/salas" class="btn btn-primary btn-sm mt-auto">Acceder</a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card h-100 p-3 text-center">
-                            <h5>Base de Datos</h5>
-                            <p class="small text-muted">Replicación activa entre nodos.</p>
-                            <span class="badge bg-success mt-auto">Sincronizada</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container">
+        <span class="navbar-brand fw-bold">Sistema Distribuido</span>
+        <div class="ms-auto">
+            <a href="/salas" class="btn btn-outline-light btn-sm me-2">Salas</a>
+            <a href="/login" class="btn btn-outline-warning btn-sm">Salir</a>
         </div>
     </div>
+</nav>
 
-    <footer class="text-center mt-5 py-3 text-muted small">
-        © 2026 – Proyecto App Distribuidas
-    </footer>
+<main class="container py-5">
+
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">Panel de Control</h1>
+        <p class="text-muted">Monitoreo del sistema distribuido</p>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Nodo activo -->
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h6 class="text-uppercase text-muted">Nodo activo</h6>
+                    <h2 class="fw-bold text-primary mt-2"><%= nodeName %></h2>
+                    <span class="badge bg-success mt-3">Operativo</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Balanceo -->
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h6 class="fw-bold">Balanceador NGINX</h6>
+                    <p class="small text-muted mb-2">
+                        El tráfico es distribuido dinámicamente entre los nodos de aplicación según pesos configurados.
+                    </p>
+                    <ul class="small mb-0">
+                        <li>App 1 → 50%</li>
+                        <li>App 2 → 33%</li>
+                        <li>App 3 → 17%</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Base de datos -->
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="fw-bold mb-1">Base de Datos</h6>
+                        <p class="small text-muted mb-0">MySQL con replicación Maestro → Esclavo</p>
+                    </div>
+                    <span class="badge bg-success">Sincronizada</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+<footer class="text-center small text-muted py-3">
+    © 2026 – Proyecto Sistemas Distribuidos
+</footer>
 
 </body>
 </html>

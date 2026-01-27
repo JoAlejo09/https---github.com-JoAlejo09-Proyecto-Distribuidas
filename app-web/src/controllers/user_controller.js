@@ -1,10 +1,8 @@
-// Requerimiento 1.1: Usuarios quemados
 const USERS = [
     { username: 'admin', password: '1234' },
     { username: 'jose', password: 'password123' }
 ];
 
-// Controlador para procesar el Login
 export const loginUser = (req, res) => {
     const { username, password } = req.body;
 
@@ -13,7 +11,6 @@ export const loginUser = (req, res) => {
     if (user) {
         res.redirect('/inicio');
     } else {
-        // Si falla, volvemos a renderizar la vista de login con el mensaje de error
         res.render('login', { error: 'Usuario o contraseña incorrectos' });
     }
 };
